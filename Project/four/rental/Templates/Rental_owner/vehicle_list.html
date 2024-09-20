@@ -1,0 +1,28 @@
+<h2>Vehicles</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Seat Capacity</th>
+            <th>Model Year</th>
+            <th>Type</th>
+            <th>Premium</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vehicle in vehicles %}
+        <tr>
+            <td>{{ vehicle.modelname }}</td>
+            <td>{{ vehicle.color }}</td>
+            <td>{{ vehicle.seatcapacity }}</td>
+            <td>{{ vehicle.modelyear }}</td>
+            <td>{{ vehicle.type }}</td>
+            <td>{{ vehicle.ispremium }}</td>
+            <td><a href="{% url 'edit_vehicle' vehicle.licensenumber %}">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'add_vehicle' %}">Add Vehicle</a>

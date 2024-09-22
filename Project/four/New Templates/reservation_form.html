@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="number"], input[type="datetime-local"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .fee-box {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #038754;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Parking Reservation</h1>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <label for="id_parking_duration">Parking Duration (in hours):</label>
+            <input type="number" id="id_parking_duration" name="parking_duration" required min="1">
+            
+            <label for="id_reservation_time">Reservation Time:</label>
+            <input type="datetime-local" id="id_reservation_time" name="reservation_time" required>
+
+            <label for="id_parking_type">Parking Type:</label>
+            <select id="id_parking_type" name="parking_type" required>
+                <option value="regular">Regular Parking</option>
+                <option value="premium">Premium Parking</option>
+            </select>
+
+            <div class="fee-box">
+                <p>Parking Fee: Regular - 70 BDT/hour, Premium - 120 BDT/hour</p>
+            </div>
+
+            <button type="submit">Confirm Reservation</button>
+        </form>
+    </div>
+</body>
+</html>

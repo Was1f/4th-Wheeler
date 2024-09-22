@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Fee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="text"]:focus, select:focus {
+            border-color: #04AA6D;
+        }
+        .fee-box {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #04AA6D;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #038754;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculate Fee</h1>
+        <form method="POST" action="">
+            <p hidden>{% csrf_token %} </p>
+            <!-- Destination Dropdown -->
+            <label for="destination">Destination:</label>
+            <select id="destination" name="destination" required>
+                <option value="">Select a destination</option>
+                <option value="Chattogram">Chattogram</option>
+                <option value="Khulna">Khulna</option>
+                <option value="Rangpur">Rangpur</option>
+                <option value="Comilla">Comilla</option>
+                <option value="Rajshahi">Rajshahi</option>
+                <option value="Sylhet">Sylhet</option>
+                <option value="Bogra">Bogra</option>
+                <option value="Natore">Natore</option>
+                <option value="Bandarban">Bandarban</option>
+                <option value="Savar">Savar</option>
+            </select>
+
+            <!-- Pick Up Point -->
+            <label for="pickup_point">Pick up point:</label>
+            <input type="text" id="pickup_point" name="pickup_point" placeholder="Enter pick up point" required>
+
+            <!-- Fee Display -->
+            <label>Fee:</label>
+            <div class="fee-box">
+                <p hidden>{% if fee %}</p>
+                    <p hidden>{{ fee }} BDT </p>
+                <p hidden>{% else %}</p>
+                    0 BDT
+                <p hidden>{% endif %}</p>
+            </div>
+
+            <!-- Confirmation Button -->
+            <button type="submit">Confirm</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Garage and Vehicle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            width: 50%;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], input[type="checkbox"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            display: inline-block;
+            width: 48%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+        .form-section h3 {
+            text-align: center;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Add Garage and Vehicle</h2>
+
+    <!-- Form for adding a new garage -->
+    <div class="form-section">
+        <h3>Add a New Garage</h3>
+        <form method="POST" action="{% url 'owner_add' %}">
+            {% csrf_token %}
+            <label for="garage-area">Garage Area</label>
+            <input type="text" id="garage-area" name="garage_area" value="{{ garage_form.area.value|default_if_none:'' }}" placeholder="Enter garage area">
+
+            <label for="garage-address">Garage Address</label>
+            <input type="text" id="garage-address" name="garage_address" value="{{ garage_form.address.value|default_if_none:'' }}" placeholder="Enter garage address">
+
+            <label for="garage-slots">Garage Slots</label>
+            <input type="number" id="garage-slots" name="garage_slots" value="{{ garage_form.slots.value|default_if_none:'' }}" placeholder="Enter number of slots">
+
+            <label for="garage-cctv">CCTV Available?</label>
+            <input type="checkbox" id="garage-cctv" name="garage_cctv" {% if garage_form.cctv.value %} checked {% endif %}>
+
+            <label for="garage-watchmen">Watchmen Available?</label>
+            <input type="checkbox" id="garage-watchmen" name="garage_watchmen" {% if garage_form.watchmen.value %} checked {% endif %}>
+
+            <button type="submit" name="add_garage">Add Garage</button>
+        </form>
+    </div>
+
+    <!-- Form for adding a new vehicle -->
+    <div class="form-section">
+        <h3>Add a New Vehicle</h3>
+        <form method="POST" action="{% url 'owner_add' %}">
+            {% csrf_token %}
+            <label for="vehicle-model">Vehicle Model</label>
+            <input type="text" id="vehicle-model" name="vehicle_model" value="{{ vehicle_form.modelname.value|default_if_none:'' }}" placeholder="Enter vehicle model">
+
+            <label for="vehicle-color">Vehicle Color</label>
+            <input type="text" id="vehicle-color" name="vehicle_color" value="{{ vehicle_form.color.value|default_if_none:'' }}" placeholder="Enter vehicle color">
+
+            <label for="vehicle-seatcapacity">Seat Capacity</label>
+            <input type="number" id="vehicle-seatcapacity" name="vehicle_seatcapacity" value="{{ vehicle_form.seatcapacity.value|default_if_none:'' }}" placeholder="Enter seat capacity">
+
+            <label for="vehicle-modelyear">Model Year</label>
+            <input type="number" id="vehicle-modelyear" name="vehicle_modelyear" value="{{ vehicle_form.modelyear.value|default_if_none:'' }}" placeholder="Enter model year">
+
+            <label for="vehicle-type">Vehicle Type</label>
+            <select id="vehicle-type" name="vehicle_type">
+                <option value="sedan" {% if vehicle_form.type.value == 'sedan' %} selected {% endif %}>Sedan</option>
+                <option value="suv" {% if vehicle_form.type.value == 'suv' %} selected {% endif %}>SUV</option>
+                <option value="truck" {% if vehicle_form.type.value == 'truck' %} selected {% endif %}>Truck</option>
+                <option value="bike" {% if vehicle_form.type.value == 'bike' %} selected {% endif %}>Bike</option>
+                <option value="van" {% if vehicle_form.type.value == 'van' %} selected {% endif %}>Van</option>
+                <option value="cycle" {% if vehicle_form.type.value == 'cycle' %} selected {% endif %}>Cycle</option>
+            </select>
+
+            <label for="Does it have AC?">Does it have AC?</label>
+            <input type="checkbox" id="vehicle-premium" name="vehicle_premium" {% if vehicle_form.ispremium.value %} checked {% endif %}>
+
+            <button type="submit" name="add_vehicle">Add Vehicle</button>
+        </form>
+    </div>
+
+</body>
+</html>

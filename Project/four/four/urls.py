@@ -1,29 +1,31 @@
-"""
-URL configuration for four project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-
+from django.contrib.auth import views as auth_views
 from django.urls import path
 from rental import views
+from Reglogin import views as regview
+from user_profile import views as user_views
+
+
 
 urlpatterns = [
-    path('garages/', views.garage_list, name='garage_list'),
-    path('vehicles/', views.vehicle_list, name='vehicle_list'),
-    path('garage/add/', views.add_garage, name='add_garage'),
-    path('vehicle/add/', views.add_vehicle, name='add_vehicle'),
+
+    path('admin', admin.site.urls),
+    path('signup', regview.signup,name="signup"),
+    path('login', regview.login,name="login"),
+
+
+    path('user_profile/', user_views.user_profile, name='user_profile'),
+    path('rent_car/', user_views.rent_car, name='car'),
+    path('rent_garage/', user_views.rent_garage, name='garage'),
+    path('logout/', user_views.logout_view, name='logout'),
+    
+    path('history/', user_views.history, name='history'),
+
+
+    path('ownerdb/', views.owner_dashboard, name='owner_dashboard'),
+    path('owner_add/', views.owner_add, name='owner_add'),
     path('garage/edit/<int:garage_id>/', views.edit_garage, name='edit_garage'),
     path('vehicle/edit/<int:vehicle_id>/', views.edit_vehicle, name='edit_vehicle'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
 ]

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .add-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .add-link a {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .add-link a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Garages</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Area</th>
+                <th>Address</th>
+                <th>Slots</th>
+                <th>CCTV</th>
+                <th>Watchmen</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for garage in garages %}
+            <tr>
+                <td>{{ garage.0 }}</td>  <!-- Access GarageID -->
+                <td>{{ garage.4 }}</td>  <!-- Access Area -->
+                <td>{{ garage.5 }}</td>  <!-- Access Address -->
+                <td>{{ garage.1 }}</td>  <!-- Access Slots -->
+                <td>{{ garage.2 }}</td>  <!-- Access CCTV -->
+                <td>{{ garage.3 }}</td>  <!-- Access Watchmen -->
+                <td><a href="{% url 'edit_garage' garage.0 %}">Edit</a></td>  <!-- Use GarageID for URL -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="add-link">
+        <a href="{% url 'owner_add' %}">Add Garage</a>
+    </div>
+
+    <h2>Vehicles</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Seat Capacity</th>
+                <th>Model Year</th>
+                <th>Type</th>
+                <th>Premium</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in vehicles %}
+            <tr>
+                <td>{{ vehicle.1 }}</td>  <!-- Access ModelName -->
+                <td>{{ vehicle.2 }}</td>  <!-- Access Color -->
+                <td>{{ vehicle.3 }}</td>  <!-- Access SeatCapacity -->
+                <td>{{ vehicle.4 }}</td>  <!-- Access ModelYear -->
+                <td>{{ vehicle.5 }}</td>  <!-- Access Type -->
+                <td>{{ vehicle.6 }}</td>  <!-- Access IsPremium -->
+                <td><a href="{% url 'edit_vehicle' vehicle.0 %}">Edit</a></td>  <!-- Use LicenseNumber for URL -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="add-link">
+        <a href="{% url 'owner_add' %}">Add Vehicle</a>
+    </div>
+
+</body>
+</html>

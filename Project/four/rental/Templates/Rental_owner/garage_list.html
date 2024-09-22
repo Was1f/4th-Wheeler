@@ -1,26 +1,58 @@
-<h2>Garages</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Area</th>
-            <th>Address</th>
-            <th>Slots</th>
-            <th>CCTV</th>
-            <th>Watchmen</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for garage in garages %}
-        <tr>
-            <td>{{ garage.area }}</td>
-            <td>{{ garage.address }}</td>
-            <td>{{ garage.slots }}</td>
-            <td>{{ garage.cctv }}</td>
-            <td>{{ garage.watchmen }}</td>
-            <td><a href="{% url 'edit_garage' garage.garageid %}">Edit</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<a href="{% url 'add_garage' %}">Add Garage</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Center the table content */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        /* Style the "Add Garage" link */
+        .add-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Garages</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Area</th>
+                <th>Address</th>
+                <th>Slots</th>
+                <th>CCTV</th>
+                <th>Watchmen</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for garage in garages %}
+            <tr>
+                <td>{{ garage.area }}</td>
+                <td>{{ garage.address }}</td>
+                <td>{{ garage.slots }}</td>
+                <td>{{ garage.cctv }}</td>
+                <td>{{ garage.watchmen }}</td>
+                <td><a href="{% url 'edit_garage' garage.garageid %}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="add-link" href="{% url 'add_garage' %}">Add Garage</a>
+</body>
+</html>

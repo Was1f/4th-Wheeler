@@ -105,3 +105,4 @@ Version: '11.5.2-MariaDB'  socket: ''  port: 3306  mariadb.org binary distributi
 2024-09-20 20:36:33 35 [Warning] Aborted connection 35 to db: 'unconnected' user: 'unauthenticated' host: 'localhost' (This connection closed normally without authentication)
 2024-09-20 20:36:43 36 [Warning] Aborted connection 36 to db: 'unconnected' user: 'unauthenticated' host: 'localhost' (Got an error reading communication packets)
 2024-09-20 20:36:43 36 [Warning] Aborted connection 36 to db: 'unconnected' user: 'unauthenticated' host: 'localhost' (This connection closed normally without authentication)
+2024-09-20 23:49:52 24 [Warning] Aborted connection 24 to db: 'project_four' user: 'root' host: 'localhost' (Got an error reading communication packets)
